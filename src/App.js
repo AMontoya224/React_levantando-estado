@@ -1,23 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+import Groceries from './Components/Groceries/Groceries';
+import MessageForm from './Components/MessageForm';
+import MessageDisplay from './Components/MessageDisplay';
 
 function App() {
+  let groceryList = ["pearl onions", "thyme", "cremini mushrooms", "butter"];
+  const [currentMsg, setCurrentMsg] = useState("There are no messages");
+    
+  const youveGotMail = ( newMessage ) => {
+      setCurrentMsg( newMessage );
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Groceries groceryList = {groceryList}/>
+      <MessageForm onNewMessage={ youveGotMail } />
+      <MessageDisplay message={ currentMsg } />
     </div>
   );
 }
